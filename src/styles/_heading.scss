@@ -1,0 +1,16 @@
+.page-title {
+    @apply relative pb-4 text-main text-center text-3xl font-normal tracking-wider;
+    // &::before {
+    //     @apply block absolute bottom-0 left-1/2 -translate-x-1/2 content-[""] w-8 h-0.5 rounded-sm bg-main;
+    // }
+}
+.heading-h2 {
+    @apply relative mb-6 pb-4 h-min text-main text-xl font-normal;
+    &::before {
+        @apply block absolute bottom-0 left-0 content-[""] w-8 h-0.5 rounded-sm bg-main;
+    }
+}
+
+.heading-h3 {
+    @apply relative mb-4 text-main text-lg font-normal;
+}
