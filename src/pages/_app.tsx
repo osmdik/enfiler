@@ -5,6 +5,8 @@ import type { AppProps } from "next/app";
 import Layout from "../components/layout/template";
 import Head from "next/head";
 import { DefaultSeo } from "next-seo";
+import { googleTagManagerId } from "../utils/gtm";
+import GoogleTagManager, { GoogleTagManagerId } from "../components/gtm";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -42,6 +44,9 @@ export default function App({ Component, pageProps }: AppProps) {
           handle: "@doshimaf",
           cardType: "summary_large_image",
         }}
+      />
+      <GoogleTagManager
+        googleTagManagerId={googleTagManagerId as GoogleTagManagerId}
       />
       <Layout>
         <Component {...pageProps} />
