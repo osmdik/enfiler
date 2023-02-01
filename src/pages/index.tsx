@@ -1,14 +1,14 @@
-import Image from 'next/image';
-import Head from 'next/head';
-import Link from 'next/link';
-import type { InferGetStaticPropsType, NextPage } from 'next';
-import { client } from '../lib/client';
-import type { NewsType } from './news';
-import Date from 'src/components/date';
+import Image from "next/image";
+import Head from "next/head";
+import Link from "next/link";
+import type { InferGetStaticPropsType, NextPage } from "next";
+import { client } from "../lib/client";
+import type { NewsType } from "./news";
+import Date from "src/components/date";
 
 export const getStaticProps = async () => {
   const news = await client.get({
-    endpoint: 'news',
+    endpoint: "news",
     queries: { offset: 0, limit: 3 },
   });
 
@@ -36,7 +36,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             width={300}
             height={85}
             priority={true}
-            loading={'eager'}
+            loading={"eager"}
           />
         </h1>
         <section className="section w-full mt-0 text-center profile">
@@ -48,7 +48,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
               width={150}
               height={150}
               priority={true}
-              loading={'eager'}
+              loading={"eager"}
             />
           </figure>
           <p className="text-main text-lg font-normal tracking-widest profile__name">
