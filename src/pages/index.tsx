@@ -31,7 +31,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       <main className="container my-16 max-w-screen-md font-zenkaku font-light">
         <h1 className="w-72 max-w-3/4 mt-20 mx-auto mb-24">
           <Image
-            src="/logo.svg"
+            src="/logo.png"
             alt="enFiler"
             width={300}
             height={85}

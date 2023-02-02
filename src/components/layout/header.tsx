@@ -13,10 +13,10 @@ const Header = () => {
       <div className="container mx-auto max-w-screen-xl flex justify-between py-3 backdrop-blur-sm bg-white/50">
         <Link href="/" className="logo w-40">
           <Image
-            src="/logo_enfiler.png"
+            src="/logo.png"
             alt="enFiler"
-            width={300}
-            height={85}
+            width={200}
+            height={70}
             priority={true}
             loading={"eager"}
           />
@@ -43,7 +43,7 @@ const Header = () => {
           <div className="container mx-auto max-w-screen-xl flex justify-between py-3">
             <Link href="/" className="logo w-40" onClick={menuFunction}>
               <Image
-                src="/logo_enfiler.png"
+                src="/logo.png"
                 alt="enFiler"
                 width={300}
                 height={85}
