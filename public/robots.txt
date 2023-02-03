@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://en-filer.com
+
+# Sitemaps
+Sitemap: https://en-filer.com/sitemap.xml
