@@ -19,6 +19,7 @@
     "dayjs": "^1.11.7",
     "eslint": "8.30.0",
     "eslint-config-next": "13.0.7",
+    "framer-motion": "^9.0.2",
     "microcms-js-sdk": "^2.3.2",
     "next": "13.0.7",
     "next-seo": "^5.15.0",

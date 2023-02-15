@@ -1,10 +1,15 @@
-import type { NextPage } from "next";
-import { NextSeo } from "next-seo";
-import Link from "next/link";
+import type { NextPage } from 'next';
+import { NextSeo } from 'next-seo';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 const Contact: NextPage = () => {
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }} // 初期状態
+      animate={{ opacity: 1 }} // マウント時
+      exit={{ opacity: 0 }}
+    >
       <NextSeo title="お問い合わせ" />
       <main className="container my-16 max-w-screen-md font-zenkaku font-light">
         <div className="mb-12 pt-12 pb-10">
@@ -28,7 +33,7 @@ const Contact: NextPage = () => {
           </Link>
         </section>
       </main>
-    </>
+    </motion.div>
   );
 };
 

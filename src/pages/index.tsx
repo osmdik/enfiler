@@ -1,14 +1,15 @@
-import Image from "next/image";
-import Head from "next/head";
-import Link from "next/link";
-import type { InferGetStaticPropsType, NextPage } from "next";
-import { client } from "../lib/client";
-import type { NewsType } from "./news";
-import Date from "src/components/date";
+import Image from 'next/image';
+import Head from 'next/head';
+import Link from 'next/link';
+import type { InferGetStaticPropsType, NextPage } from 'next';
+import { client } from '../lib/client';
+import type { NewsType } from './news';
+import Date from 'src/components/date';
+import { motion } from 'framer-motion';
 
 export const getStaticProps = async () => {
   const news = await client.get({
-    endpoint: "news",
+    endpoint: 'news',
     queries: { offset: 0, limit: 3 },
   });
 
@@ -27,7 +28,11 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   data,
 }: Props) => {
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }} // 初期状態
+      animate={{ opacity: 1 }} // マウント時
+      exit={{ opacity: 0 }}
+    >
       <main className="container my-16 max-w-screen-md font-zenkaku font-light">
         <h1 className="w-72 max-w-3/4 mt-20 mx-auto mb-24">
           <Image
@@ -36,7 +41,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             width={300}
             height={85}
             priority={true}
-            loading={"eager"}
+            loading={'eager'}
           />
         </h1>
         <section className="section w-full mt-0 text-center profile">
@@ -48,7 +53,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
               width={150}
               height={150}
               priority={true}
-              loading={"eager"}
+              loading={'eager'}
             />
           </figure>
           <p className="text-main text-lg font-normal tracking-widest profile__name">
@@ -109,7 +114,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           </div>
         </section>
       </main>
-    </>
+    </motion.div>
   );
 };
 

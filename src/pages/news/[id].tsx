@@ -1,12 +1,13 @@
-import { GetStaticPaths, InferGetStaticPropsType, NextPage } from "next";
-import { client } from "../../lib/client";
-import type { NewsType } from "../news";
-import Date from "src/components/date";
-import Link from "next/link";
-import { NextSeo } from "next-seo";
+import { GetStaticPaths, InferGetStaticPropsType, NextPage } from 'next';
+import { client } from '../../lib/client';
+import type { NewsType } from '../news';
+import Date from 'src/components/date';
+import Link from 'next/link';
+import { NextSeo } from 'next-seo';
+import { motion } from 'framer-motion';
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await client.get({ endpoint: "news" });
+  const data = await client.get({ endpoint: 'news' });
   const paths = data.contents.map(
     (content: { id: any }) => `/news/${content.id}`
   );
@@ -15,7 +16,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps = async (context: { params: { id: any } }) => {
   const id = context.params.id;
-  const data = await client.get({ endpoint: "news", contentId: id });
+  const data = await client.get({ endpoint: 'news', contentId: id });
 
   return {
     props: {
@@ -32,7 +33,11 @@ const NewsId: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   news,
 }: Props) => {
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }} // 初期状態
+      animate={{ opacity: 1 }} // マウント時
+      exit={{ opacity: 0 }}
+    >
       <NextSeo title={news.title} />
       <main className="container my-16 max-w-screen-md font-zenkaku font-light">
         <div className="mb-12 pt-12 pb-10 border-b border-gray-300">
@@ -54,7 +59,7 @@ const NewsId: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           All News
         </Link>
       </main>
-    </>
+    </motion.div>
   );
 };
 
