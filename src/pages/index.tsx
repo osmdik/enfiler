@@ -67,7 +67,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             {data.map((news) => (
               <li key={news.id} className="mb-4 pb-2 border-b border-gray-300">
                 <div className="mb-2 align-middle">
-                  <span className="text-sm text-gray-500">
+                  <span className="text-sm text-gray-500 tracking-widest">
                     <Date date={news.publishedAt} />
                   </span>
                 </div>
