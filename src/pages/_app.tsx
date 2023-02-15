@@ -50,18 +50,21 @@ export default function App({ Component, pageProps, router }: AppProps) {
         googleTagManagerId={googleTagManagerId as GoogleTagManagerId}
       />
 
-      <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
-        <Layout>
+      <Layout>
+        <AnimatePresence
+          mode="wait"
+          onExitComplete={() => window.scrollTo(0, 0)}
+        >
           <motion.div
             key={router.asPath}
-            initial={{ opacity: 0 }} // 初期状態
-            animate={{ opacity: 1 }} // マウント時
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <Component {...pageProps} />
           </motion.div>
-        </Layout>
-      </AnimatePresence>
+        </AnimatePresence>
+      </Layout>
     </>
   );
 }

@@ -1,17 +1,21 @@
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { Fragment } from "react";
+import { Menu, Transition } from "@headlessui/react";
+import { Bars2Icon } from "@heroicons/react/24/outline";
+
+const navigation = [
+  { name: "Home", subname: "", href: "/" },
+  { name: "About", subname: "enFilerについて", href: "/about" },
+  { name: "Service", subname: "サービス案内", href: "/service" },
+  { name: "Contact", subname: "お問い合わせ", href: "/contact" },
+];
 
 const Header = () => {
-  const [openMenu, setOpenMenu] = useState(false);
-
-  const menuFunction = () => {
-    setOpenMenu(!openMenu);
-  };
   return (
-    <header className="sticky top-0 font-zenkaku font-light z-50">
+    <header className="sticky top-0 font-zenkaku font-light z-10">
       <div className="container mx-auto max-w-screen-xl flex justify-between py-3 backdrop-blur-sm bg-white/50">
-        <Link href="/" className="logo w-40">
+        <Link href="/" className="logo w-40 flex items-center" scroll={false}>
           <Image
             src="/logo.png"
             alt="enFiler"
@@ -21,88 +25,51 @@ const Header = () => {
             loading={"eager"}
           />
         </Link>
-        <button onClick={menuFunction}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-8 h-8"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+        <Menu as="div" className="relative inline-block text-left">
+          <Menu.Button className="inline-flex flex-col justify-center items-center w-full rounded-md bg-opacity-20 p-2 text-sm font-medium hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+            <span className="sr-only">Open menu</span>
+            <Bars2Icon
+              className="h-10 w-10 text-slate-600"
+              aria-hidden="true"
             />
-          </svg>
-        </button>
+            <span className="block -translate-y-1.5 text-xs text-center">
+              MENU
+            </span>
+          </Menu.Button>
+          <Transition
+            as={Fragment}
+            enter="transition ease-out duration-100"
+            enterFrom="transform opacity-0 scale-95"
+            enterTo="transform opacity-100 scale-100"
+            leave="transition ease-in duration-75"
+            leaveFrom="transform opacity-100 scale-100"
+            leaveTo="transform opacity-0 scale-95"
+          >
+            <Menu.Items
+              as="ul"
+              className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg focus:outline-none"
+            >
+              {navigation.map((item) => (
+                <li
+                  key={item.name}
+                  className="text-center text-lg tracking-widest"
+                >
+                  <Menu.Item>
+                    <Link
+                      href={item.href}
+                      scroll={false}
+                      className="inline-block w-full py-4 hover:opacity-40 hover:tracking-[.25em] transition-all ease-easeInOutBack duration-300"
+                    >
+                      {item.name}
+                      <span className="block text-xs">{item.subname}</span>
+                    </Link>
+                  </Menu.Item>
+                </li>
+              ))}
+            </Menu.Items>
+          </Transition>
+        </Menu>
       </div>
-      {openMenu ? (
-        <div className="fixed top-0 left-0 w-full h-full bg-white">
-          <div className="container mx-auto max-w-screen-xl flex justify-between py-3">
-            <Link href="/" className="logo w-40" onClick={menuFunction}>
-              <Image
-                src="/logo.png"
-                alt="enFiler"
-                width={300}
-                height={85}
-                priority={true}
-                loading={"eager"}
-              />
-            </Link>
-            <button onClick={menuFunction}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-8 h-8"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
-          <nav className="flex items-center justify-center flex-col pt-20 sm:pt-40">
-            <ul className="h-full">
-              <li className="mb-8 text-3xl tracking-widest">
-                <Link href="/" onClick={menuFunction}>
-                  Home
-                </Link>
-              </li>
-              <li className="mb-8 text-3xl tracking-widest">
-                <Link href="/about" onClick={menuFunction}>
-                  About
-                  <span className="ml-4 text-base ">enFilerについて</span>
-                </Link>
-              </li>
-              <li
-                className="mb-8 text-3xl tracking-widest"
-                onClick={menuFunction}
-              >
-                <Link href="/service">
-                  Service
-                  <span className="ml-4 text-base ">サービス案内</span>
-                </Link>
-              </li>
-              <li
-                className="mb-8 text-3xl tracking-widest"
-                onClick={menuFunction}
-              >
-                <Link href="/contact">
-                  Contact
-                  <span className="ml-4 text-base ">お問い合わせ</span>
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      ) : undefined}
     </header>
   );
 };
