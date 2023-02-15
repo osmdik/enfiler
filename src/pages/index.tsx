@@ -5,7 +5,6 @@ import type { InferGetStaticPropsType, NextPage } from 'next';
 import { client } from '../lib/client';
 import type { NewsType } from './news';
 import Date from 'src/components/date';
-import { motion } from 'framer-motion';
 
 export const getStaticProps = async () => {
   const news = await client.get({
@@ -28,11 +27,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   data,
 }: Props) => {
   return (
-    <motion.div
-      initial={{ opacity: 0 }} // 初期状態
-      animate={{ opacity: 1 }} // マウント時
-      exit={{ opacity: 0 }}
-    >
+    <>
       <main className="container my-16 max-w-screen-md font-zenkaku font-light">
         <h1 className="w-72 max-w-3/4 mt-20 mx-auto mb-24">
           <Image
@@ -92,6 +87,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             <Link
               href="./about"
               className="block p-6 rounded bg-slate-50 shadow-md hover:shadow-xl text-center text-lg tracking-widest text-main hover:tracking-[.25em] transition-all ease-easeInOutBack duration-300"
+              scroll={false}
             >
               About
             </Link>
@@ -100,6 +96,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             <Link
               href="./service"
               className="block p-6 rounded bg-slate-50 shadow-md hover:shadow-xl text-center text-lg tracking-widest text-main hover:tracking-[.25em] transition-all ease-easeInOutBack duration-300"
+              scroll={false}
             >
               Service
             </Link>
@@ -108,13 +105,14 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             <Link
               href="./contact"
               className="block p-6 rounded bg-slate-50 shadow-md hover:shadow-xl text-center text-lg tracking-widest text-main hover:tracking-[.25em] transition-all ease-easeInOutBack duration-300"
+              scroll={false}
             >
               Contact
             </Link>
           </div>
         </section>
       </main>
-    </motion.div>
+    </>
   );
 };
 

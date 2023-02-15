@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { client } from '../lib/client';
 import Date from 'src/components/date';
 import { NextSeo } from 'next-seo';
-import { motion } from 'framer-motion';
 
 export type NewsType = {
   id: string;
@@ -36,11 +35,7 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   data,
 }: Props) => {
   return (
-    <motion.div
-      initial={{ opacity: 0 }} // 初期状態
-      animate={{ opacity: 1 }} // マウント時
-      exit={{ opacity: 0 }}
-    >
+    <>
       <NextSeo title="お知らせ" />
       <main className="container my-16 max-w-screen-md font-zenkaku font-light">
         <div className="mb-12 pt-12 pb-10">
@@ -65,7 +60,7 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           ))}
         </ul>
       </main>
-    </motion.div>
+    </>
   );
 };
 

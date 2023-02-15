@@ -7,7 +7,7 @@ import Head from 'next/head';
 import { DefaultSeo } from 'next-seo';
 import { googleTagManagerId } from '../utils/gtm';
 import GoogleTagManager, { GoogleTagManagerId } from '../components/gtm';
-import { AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function App({ Component, pageProps, router }: AppProps) {
   return (
@@ -50,9 +50,16 @@ export default function App({ Component, pageProps, router }: AppProps) {
         googleTagManagerId={googleTagManagerId as GoogleTagManagerId}
       />
 
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
         <Layout>
-          <Component key={router.asPath} {...pageProps} />
+          <motion.div
+            key={router.asPath}
+            initial={{ opacity: 0 }} // 初期状態
+            animate={{ opacity: 1 }} // マウント時
+            exit={{ opacity: 0 }}
+          >
+            <Component {...pageProps} />
+          </motion.div>
         </Layout>
       </AnimatePresence>
     </>
