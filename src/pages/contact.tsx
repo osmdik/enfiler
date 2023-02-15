@@ -1,6 +1,6 @@
-import type { NextPage } from 'next';
-import { NextSeo } from 'next-seo';
-import Link from 'next/link';
+import type { NextPage } from "next";
+import { NextSeo } from "next-seo";
+import Link from "next/link";
 
 const Contact: NextPage = () => {
   return (

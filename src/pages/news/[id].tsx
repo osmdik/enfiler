@@ -1,12 +1,12 @@
-import { GetStaticPaths, InferGetStaticPropsType, NextPage } from 'next';
-import { client } from '../../lib/client';
-import type { NewsType } from '../news';
-import Date from 'src/components/date';
-import Link from 'next/link';
-import { NextSeo } from 'next-seo';
+import { GetStaticPaths, InferGetStaticPropsType, NextPage } from "next";
+import { client } from "../../lib/client";
+import type { NewsType } from "../news";
+import Date from "src/components/date";
+import Link from "next/link";
+import { NextSeo } from "next-seo";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await client.get({ endpoint: 'news' });
+  const data = await client.get({ endpoint: "news" });
   const paths = data.contents.map(
     (content: { id: any }) => `/news/${content.id}`
   );
@@ -15,7 +15,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps = async (context: { params: { id: any } }) => {
   const id = context.params.id;
-  const data = await client.get({ endpoint: 'news', contentId: id });
+  const data = await client.get({ endpoint: "news", contentId: id });
 
   return {
     props: {

@@ -1,9 +1,9 @@
-import type { InferGetStaticPropsType, NextPage } from 'next';
-import Head from 'next/head';
-import Link from 'next/link';
-import { client } from '../lib/client';
-import Date from 'src/components/date';
-import { NextSeo } from 'next-seo';
+import type { InferGetStaticPropsType, NextPage } from "next";
+import Head from "next/head";
+import Link from "next/link";
+import { client } from "../lib/client";
+import Date from "src/components/date";
+import { NextSeo } from "next-seo";
 
 export type NewsType = {
   id: string;
@@ -21,7 +21,7 @@ type Props = {
 
 export const getStaticProps = async () => {
   const news = await client.get({
-    endpoint: 'news',
+    endpoint: "news",
   });
 
   return {

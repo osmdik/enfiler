@@ -1,5 +1,5 @@
-import type { NextPage } from 'next';
-import { NextSeo } from 'next-seo';
+import type { NextPage } from "next";
+import { NextSeo } from "next-seo";
 
 const Service: NextPage = () => {
   return (

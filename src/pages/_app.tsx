@@ -1,13 +1,13 @@
-import 'tailwindcss/tailwind.css';
-import '../styles/style.scss';
+import "tailwindcss/tailwind.css";
+import "../styles/style.scss";
 
-import type { AppProps } from 'next/app';
-import Layout from '../components/layout/template';
-import Head from 'next/head';
-import { DefaultSeo } from 'next-seo';
-import { googleTagManagerId } from '../utils/gtm';
-import GoogleTagManager, { GoogleTagManagerId } from '../components/gtm';
-import { motion, AnimatePresence } from 'framer-motion';
+import type { AppProps } from "next/app";
+import Layout from "../components/layout/template";
+import Head from "next/head";
+import { DefaultSeo } from "next-seo";
+import { googleTagManagerId } from "../utils/gtm";
+import GoogleTagManager, { GoogleTagManagerId } from "../components/gtm";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function App({ Component, pageProps, router }: AppProps) {
   return (
@@ -24,26 +24,26 @@ export default function App({ Component, pageProps, router }: AppProps) {
         defaultTitle="島根県出雲市のWebサイト制作 - enFiler | 大嶋大輝"
         description="大嶋 大輝（Oshima Daiki）、屋号enFiler。島根県出雲市を拠点に、WebクリエイターとしてWebサイトを制作をしています。Webサイト制作のディレクションやコーディング、運用などWeb制作サービスを幅広く提供しています。"
         openGraph={{
-          type: 'website',
-          title: '島根県出雲市のWebサイト制作 - enFiler | 大嶋大輝',
+          type: "website",
+          title: "島根県出雲市のWebサイト制作 - enFiler | 大嶋大輝",
           description:
-            '大嶋 大輝（Oshima Daiki）、屋号enFiler。島根県出雲市を拠点に、WebクリエイターとしてWebサイトを制作をしています。Webサイト制作のディレクションやコーディング、運用などWeb制作サービスを幅広く提供しています。',
-          site_name: '島根県出雲市のWebサイト制作 - enFiler | 大嶋大輝',
-          locale: 'ja_JP',
-          url: 'https://en-filer.com/',
+            "大嶋 大輝（Oshima Daiki）、屋号enFiler。島根県出雲市を拠点に、WebクリエイターとしてWebサイトを制作をしています。Webサイト制作のディレクションやコーディング、運用などWeb制作サービスを幅広く提供しています。",
+          site_name: "島根県出雲市のWebサイト制作 - enFiler | 大嶋大輝",
+          locale: "ja_JP",
+          url: "https://en-filer.com/",
           images: [
             {
-              url: './ogp-image.jpg',
+              url: "./ogp-image.jpg",
               width: 800,
               height: 600,
-              alt: 'enFiler | 大嶋大輝',
-              type: 'image/jpeg',
+              alt: "enFiler | 大嶋大輝",
+              type: "image/jpeg",
             },
           ],
         }}
         twitter={{
-          handle: '@doshimaf',
-          cardType: 'summary_large_image',
+          handle: "@doshimaf",
+          cardType: "summary_large_image",
         }}
       />
       <GoogleTagManager
