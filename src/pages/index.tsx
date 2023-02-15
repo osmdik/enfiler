@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Head from "next/head";
 import Link from "next/link";
 import type { InferGetStaticPropsType, NextPage } from "next";
 import { client } from "../lib/client";

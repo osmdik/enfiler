@@ -1,5 +1,4 @@
 import type { InferGetStaticPropsType, NextPage } from "next";
-import Head from "next/head";
 import Link from "next/link";
 import { client } from "../lib/client";
 import Date from "src/components/date";
