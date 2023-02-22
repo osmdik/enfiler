@@ -1,5 +1,5 @@
-import type { NextPage } from "next";
-import { NextSeo } from "next-seo";
+import type { NextPage } from 'next';
+import { NextSeo } from 'next-seo';
 
 const About: NextPage = () => {
   return (
@@ -68,7 +68,6 @@ const About: NextPage = () => {
                   <li>JamstackによるWebサイト制作</li>
                   <li>Webサイトの保守管理・運用</li>
                   <li>アナリティクスなどのアクセス解析</li>
-                  <li>Web広告・SNS広告の運用</li>
                 </ul>
               </dd>
             </dl>
