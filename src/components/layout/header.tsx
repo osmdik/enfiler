@@ -1,14 +1,14 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import React, { Fragment } from 'react';
-import { Menu, Transition } from '@headlessui/react';
-import { Bars2Icon } from '@heroicons/react/24/outline';
+import Link from "next/link";
+import Image from "next/image";
+import React, { Fragment } from "react";
+import { Menu, Transition } from "@headlessui/react";
+import { Bars2Icon } from "@heroicons/react/24/outline";
 
 const navigation = [
-  { name: 'Home', subname: '', href: '/' },
-  { name: 'About', subname: 'enFilerについて', href: '/about' },
-  { name: 'Service', subname: 'サービス案内', href: '/service' },
-  { name: 'Contact', subname: 'お問い合わせ', href: '/contact' },
+  { name: "Home", subname: "", href: "/" },
+  { name: "About", subname: "enFilerについて", href: "/about" },
+  { name: "Service", subname: "サービス案内", href: "/service" },
+  { name: "Contact", subname: "お問い合わせ", href: "/contact" },
 ];
 
 const Header = () => {
@@ -22,7 +22,7 @@ const Header = () => {
             width={200}
             height={70}
             priority={true}
-            loading={'eager'}
+            loading={"eager"}
           />
         </Link>
         <Menu as="div" className="relative inline-block text-left">
