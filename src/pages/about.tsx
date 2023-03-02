@@ -77,7 +77,6 @@ const About: NextPage = () => {
                 <ul>
                   <li>株式会社Saphan</li>
                   <li>Blue株式会社</li>
-                  <li>合同会社雲州工業</li>
                 </ul>
               </dd>
             </dl>
