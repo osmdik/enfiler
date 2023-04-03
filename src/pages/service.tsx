@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import Link from "next/link";
 import { NextSeo } from "next-seo";
 
 const Service: NextPage = () => {
@@ -128,6 +129,61 @@ const Service: NextPage = () => {
               </dt>
               <dd className="col-span-2 sm:col-span-1 text-right">5,000円〜</dd>
             </dl>
+          </div>
+        </section>
+        <section className="section">
+          <h2 className="heading-h2">よくあるご質問</h2>
+          <div className="mb-8">
+            <h3 className="heading-h3">対応エリアについて</h3>
+            <p className="leading-8">
+              対応エリアは、全国です。
+              <br />
+              島根・鳥取（岡山・広島・山口の一部地域）は対面でのお打ち合わせも可能です。
+              <br />
+              その他の地域は、基本的にはオンラインでのコミュニケーションとなります。
+            </p>
+          </div>
+          <div className="mb-8">
+            <h3 className="heading-h3">対応時間について</h3>
+            <p className="leading-8">
+              基本的に、日祝、GW、お盆、年末年始などを除き、作業を行っております。
+              <br />
+              お打ち合わせについては、下記の日時となりますので、ご相談ください。
+              <br />
+              <Link
+                href="/news/2354138171"
+                className="underline tracking-wider hover:opacity-40 hover:no-underline transition-all duration-300"
+                scroll={false}
+              >
+                お打ち合わせの対応時間について
+              </Link>
+            </p>
+          </div>
+          <div className="mb-8">
+            <h3 className="heading-h3">お支払いについて</h3>
+            <p className="leading-8">
+              料金のお支払いは完成後の一括払い、もしくは着手時・完成時の2回払いとなります。
+              <br />
+              お客様の状況によって、分割払いも対応可能ですのでご相談ください。
+            </p>
+          </div>
+          <div className="mb-8">
+            <h3 className="heading-h3">特急料金について</h3>
+            <p className="leading-8">
+              納品までの期間が通常の工期よりも短期間の場合や、GWやお盆、年末年始などの休暇時期での作業が必要な場合は、特急料金として20〜50％の追加料金を頂戴いたします。
+              <br />
+              その際は、事前に特急料金が発生する旨をご案内いたしますので、ご相談ください。
+            </p>
+          </div>
+          <h3 className="heading-h3">キャンセル料について</h3>
+          <div className="mb-8">
+            <p className="mb-8 leading-8">
+              制作途中でのキャンセルの場合は進行具合によってキャンセル料金が発生します。
+              <br />
+              例）半分まで制作した段階でキャンセルされた場合はお見積りの50％のキャンセル料金となります
+              <br />
+              また、当方でサーバーの契約や運用等ランニングコストが発生する制作の場合、制作期間によっては制作途中でも保守管理費が発生いたします。
+            </p>
           </div>
         </section>
       </main>

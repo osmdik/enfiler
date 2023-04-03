@@ -59,6 +59,18 @@ const About: NextPage = () => {
               <dd className="col-span-3">2022年 7月</dd>
             </dl>
             <dl className="grid grid-cols-1 sm:grid-cols-4 gap-2 sm:gap-4 py-8 border-b border-gray-300">
+              <dt className="col-span-1 font-normal">対応時間</dt>
+              <dd className="col-span-3">
+                <p>平日</p>
+                <p className="text-sm">
+                  8:00〜19:00（オンラインまたはお電話のみ）
+                </p>
+                <p className="mt-2">土曜日</p>
+                <p className="text-sm">9:00〜17:00（対面）</p>
+                <p className="text-sm">8:00〜19:00（オンラインまたはお電話）</p>
+              </dd>
+            </dl>
+            <dl className="grid grid-cols-1 sm:grid-cols-4 gap-2 sm:gap-4 py-8 border-b border-gray-300">
               <dt className="col-span-1 font-normal">事業内容</dt>
               <dd className="col-span-3">
                 <ul>
