@@ -21,10 +21,10 @@ const Contact: NextPage = () => {
           </p>
 
           <Link
-            href="mailto:info@en-filer.com"
+            href="mailto:enfiler.web@gmail.com"
             className="block mx-auto py-4 w-80 max-w-3/4 border border-slate-200 text-main text-center tracking-widest shadow-md hover:shadow-xl hover:tracking-[.25em] transition-all ease-easeInOutBack duration-300"
           >
-            info@en-filer.com
+            enfiler.web@gmail.com
           </Link>
         </section>
       </main>

@@ -71,6 +71,12 @@ const About: NextPage = () => {
               </dd>
             </dl>
             <dl className="grid grid-cols-1 sm:grid-cols-4 gap-2 sm:gap-4 py-8 border-b border-gray-300">
+              <dt className="col-span-1 font-normal">電話番号</dt>
+              <dd className="col-span-3">
+                ご依頼いただいたお客様にのみお教えいたします。
+              </dd>
+            </dl>
+            <dl className="grid grid-cols-1 sm:grid-cols-4 gap-2 sm:gap-4 py-8 border-b border-gray-300">
               <dt className="col-span-1 font-normal">事業内容</dt>
               <dd className="col-span-3">
                 <ul>
@@ -89,6 +95,7 @@ const About: NextPage = () => {
                 <ul>
                   <li>株式会社Saphan</li>
                   <li>Blue株式会社</li>
+                  <li>Titi hair coordinate</li>
                 </ul>
               </dd>
             </dl>
