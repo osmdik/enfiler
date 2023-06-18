@@ -82,10 +82,10 @@ const About: NextPage = () => {
                 <ul>
                   <li>コーディング</li>
                   <li>ディレクション業務</li>
-                  <li>WordPressを利用したWebサイト開発</li>
-                  <li>JamstackによるWebサイト制作</li>
-                  <li>Webサイトの保守管理・運用</li>
-                  <li>アナリティクスなどのアクセス解析</li>
+                  <li>WordPressを利用したホームページ開発</li>
+                  <li>Jamstackによるホームページ制作</li>
+                  <li>ホームページの保守管理・運用</li>
+                  <li>アナリティクスなどによるアクセス解析</li>
                 </ul>
               </dd>
             </dl>
@@ -96,6 +96,7 @@ const About: NextPage = () => {
                   <li>株式会社Saphan</li>
                   <li>Blue株式会社</li>
                   <li>Titi hair coordinate</li>
+                  <li>UniqueME</li>
                 </ul>
               </dd>
             </dl>

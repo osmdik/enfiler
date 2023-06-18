@@ -13,15 +13,15 @@ const Service: NextPage = () => {
         <section className="section">
           <h2 className="heading-h2">主なサービス</h2>
           <div className="mb-8">
-            <h3 className="heading-h3">Webサイト制作</h3>
+            <h3 className="heading-h3">ホームページ制作</h3>
             <p className="leading-8">
-              Webサイトの新規制作やリニューアルを承ります。制作一式だけでなく、コーディングのみやディレクションのみ、部分的な改修などのご依頼も承ります。
+              ホームページの新規制作やリニューアルを承ります。制作一式だけでなく、コーディングのみやディレクションのみ、部分的な改修などのご依頼も承ります。
             </p>
           </div>
-          <h3 className="heading-h3">Webサイトの運用・保守管理</h3>
+          <h3 className="heading-h3">ホームページの運用・保守管理</h3>
           <div className="mb-8">
             <p className="mb-8 leading-8">
-              Webサイトを活用してお客様の事業の課題を解決するために運用のお手伝いをいたします。アクセス解析やWordPressなど定期的に更新が必要なサイトの保守管理など、お客様の運営スタイルに合わせて、ご提案いたします。Webサイトの管理がめんどう、Web担当がいないという方は、ぜひご相談ください。
+              ホームページを活用してお客様の事業の課題を解決するために運用のお手伝いをいたします。アクセス解析やWordPressなど定期的に更新が必要なサイトの保守管理など、お客様の運営スタイルに合わせて、ご提案いたします。ホームページの管理がめんどう、Web担当がいないという方は、ぜひご相談ください。
             </p>
           </div>
         </section>
@@ -68,7 +68,7 @@ const Service: NextPage = () => {
               </dt>
               <dd className="col-span-3">
                 <p>
-                  提案させていただいた内容やお客様の要望に合わせてWebサイトの設計を行います。設計した内容をもとにしてデザイン・開発を行います。
+                  提案させていただいた内容やお客様の要望に合わせてホームページの設計を行います。設計した内容をもとにしてデザイン・開発を行います。
                 </p>
               </dd>
             </dl>
@@ -79,7 +79,7 @@ const Service: NextPage = () => {
               </dt>
               <dd className="col-span-3">
                 <p>
-                  Webサイトはつくって終わりではありません。お客様がWebサイトを通して実現したいこと、改善したいことを成し遂げるための運用、またそのお手伝いをさせていただきます。
+                  ホームページはつくって終わりではありません。お客様がホームページを通して実現したいこと、改善したいことを成し遂げるための運用、またそのお手伝いをさせていただきます。
                 </p>
               </dd>
             </dl>
@@ -123,11 +123,13 @@ const Service: NextPage = () => {
             </dl>
             <dl className="grid grid-cols-4 gap-2 sm:gap-4 py-8 border-b border-gray-300">
               <dt className="col-span-2 sm:col-span-3 font-normal">
-                Webサイトの運用
+                ホームページの運用
                 <br />
                 保守管理
               </dt>
-              <dd className="col-span-2 sm:col-span-1 text-right">5,000円〜</dd>
+              <dd className="col-span-2 sm:col-span-1 text-right">
+                月額5,000円〜
+              </dd>
             </dl>
           </div>
         </section>

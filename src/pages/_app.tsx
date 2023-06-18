@@ -20,15 +20,15 @@ export default function App({ Component, pageProps, router }: AppProps) {
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
       </Head>
       <DefaultSeo
-        titleTemplate="%s | 島根県出雲市のWebサイト制作 - enFiler | 大嶋大輝"
-        defaultTitle="島根県出雲市のWebサイト制作 - enFiler | 大嶋大輝"
-        description="大嶋 大輝（Oshima Daiki）、屋号enFiler。島根県出雲市を拠点に、WebクリエイターとしてWebサイトを制作をしています。Webサイト制作のディレクションやコーディング、運用などWeb制作サービスを幅広く提供しています。"
+        titleTemplate="%s | 島根県出雲市のホームページ制作 - enFiler | 大嶋大輝"
+        defaultTitle="島根県出雲市のホームページ制作 - enFiler | 大嶋大輝"
+        description="大嶋 大輝（Oshima Daiki）、屋号enFiler。島根県出雲市を拠点に、Webクリエイターとしてホームページを制作をしています。ホームページ制作のディレクションやコーディング、運用などWeb制作サービスを幅広く提供しています。"
         openGraph={{
           type: "website",
-          title: "島根県出雲市のWebサイト制作 - enFiler | 大嶋大輝",
+          title: "島根県出雲市のホームページ制作 - enFiler | 大嶋大輝",
           description:
-            "大嶋 大輝（Oshima Daiki）、屋号enFiler。島根県出雲市を拠点に、WebクリエイターとしてWebサイトを制作をしています。Webサイト制作のディレクションやコーディング、運用などWeb制作サービスを幅広く提供しています。",
-          site_name: "島根県出雲市のWebサイト制作 - enFiler | 大嶋大輝",
+            "大嶋 大輝（Oshima Daiki）、屋号enFiler。島根県出雲市を拠点に、Webクリエイターとしてホームページを制作をしています。ホームページ制作のディレクションやコーディング、運用などWeb制作サービスを幅広く提供しています。",
+          site_name: "島根県出雲市のホームページ制作 - enFiler | 大嶋大輝",
           locale: "ja_JP",
           url: "https://en-filer.com/",
           images: [
