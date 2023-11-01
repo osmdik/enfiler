@@ -8,6 +8,7 @@ import { DefaultSeo } from "next-seo";
 import { googleTagManagerId } from "../utils/gtm";
 import GoogleTagManager, { GoogleTagManagerId } from "../components/gtm";
 import { motion, AnimatePresence } from "framer-motion";
+import { Toaster } from "react-hot-toast";
 
 export default function App({ Component, pageProps, router }: AppProps) {
   return (
@@ -64,6 +65,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
             <Component {...pageProps} />
           </motion.div>
         </AnimatePresence>
+        <Toaster />
       </Layout>
     </>
   );
