@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { NextSeo } from "next-seo";
-import Link from "next/link";
+import { ContactForm } from "src/components/ContactForm";
 
 const Contact: NextPage = () => {
   return (
@@ -19,13 +19,7 @@ const Contact: NextPage = () => {
             <br />
             必須ではございませんが、ホームページ制作のご相談の場合、ご依頼の目的やお困りごと、ご予算、納期などの情報もご提供いただけますと幸いです。
           </p>
-
-          <Link
-            href="mailto:enfiler.web@gmail.com"
-            className="block mx-auto py-4 w-80 max-w-3/4 border border-slate-200 text-main text-center tracking-widest shadow-md hover:shadow-xl hover:tracking-[.25em] transition-all ease-easeInOutBack duration-300"
-          >
-            enfiler.web@gmail.com
-          </Link>
+          <ContactForm />
         </section>
       </main>
     </>
