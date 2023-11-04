@@ -15,7 +15,9 @@ export const ContactForm = () => {
     register,
     reset,
     formState: { errors, isValid, isSubmitting },
-  } = useForm<FormType>();
+  } = useForm<FormType>({
+    mode: "onBlur",
+  });
 
   const onSubmit: SubmitHandler<any> = async (data) => {
     try {
