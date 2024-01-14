@@ -53,7 +53,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           <p className="text-main text-lg font-normal tracking-widest profile__name">
             大嶋 大輝
           </p>
-          <p className="mb-6 text-accent text-sm font-normal text-opacity-70 tracking-widest">
+          <p className="mb-6 text-accent text-sm font-normal text-opacity-90 tracking-widest">
             Oshima Daiki
           </p>
           <p className="mx-auto max-w-lg mb-8 text-left">
