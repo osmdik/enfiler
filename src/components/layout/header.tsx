@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import React, { Fragment } from "react";
-import { Menu, Transition } from "@headlessui/react";
+import React from "react";
+import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/react";
 import { Bars2Icon } from "@heroicons/react/24/outline";
 
 const navigation = [
@@ -26,7 +26,7 @@ const Header = () => {
           />
         </Link>
         <Menu as="div" className="relative inline-block text-left">
-          <Menu.Button className="inline-flex flex-col justify-center items-center w-full rounded-md bg-opacity-20 p-2 text-sm font-medium hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+          <MenuButton className="inline-flex flex-col justify-center items-center w-full rounded-md bg-opacity-20 p-2 text-sm font-medium hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
             <span className="sr-only">Open menu</span>
             <Bars2Icon
               className="h-10 w-10 text-slate-600"
@@ -35,39 +35,30 @@ const Header = () => {
             <span className="block -translate-y-1.5 text-xs text-center">
               MENU
             </span>
-          </Menu.Button>
-          <Transition
-            as={Fragment}
-            enter="transition ease-out duration-100"
-            enterFrom="transform opacity-0 scale-95"
-            enterTo="transform opacity-100 scale-100"
-            leave="transition ease-in duration-75"
-            leaveFrom="transform opacity-100 scale-100"
-            leaveTo="transform opacity-0 scale-95"
+          </MenuButton>
+          <MenuItems
+            as="ul"
+            transition
+            className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg focus:outline-none transition ease-out data-[closed]:opacity-0 data-[closed]:scale-95 data-[enter]:duration-100 data-[leave]:duration-75 data-[leave]:ease-in"
           >
-            <Menu.Items
-              as="ul"
-              className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg focus:outline-none"
-            >
-              {navigation.map((item) => (
-                <li
-                  key={item.name}
-                  className="text-center text-lg tracking-widest"
-                >
-                  <Menu.Item>
-                    <Link
-                      href={item.href}
-                      scroll={false}
-                      className="inline-block w-full py-4 hover:opacity-40 hover:tracking-[.25em] transition-all ease-easeInOutBack duration-300"
-                    >
-                      {item.name}
-                      <span className="block text-xs">{item.subname}</span>
-                    </Link>
-                  </Menu.Item>
-                </li>
-              ))}
-            </Menu.Items>
-          </Transition>
+            {navigation.map((item) => (
+              <li
+                key={item.name}
+                className="text-center text-lg tracking-widest"
+              >
+                <MenuItem>
+                  <Link
+                    href={item.href}
+                    scroll={false}
+                    className="inline-block w-full py-4 hover:opacity-40 hover:tracking-[.25em] transition-all ease-easeInOutBack duration-300"
+                  >
+                    {item.name}
+                    <span className="block text-xs">{item.subname}</span>
+                  </Link>
+                </MenuItem>
+              </li>
+            ))}
+          </MenuItems>
         </Menu>
       </div>
     </header>
