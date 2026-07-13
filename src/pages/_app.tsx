@@ -43,7 +43,6 @@ export default function App({ Component, pageProps, router }: AppProps) {
           ],
         }}
         twitter={{
-          handle: "@doshimaf",
           cardType: "summary_large_image",
         }}
       />
