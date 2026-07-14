@@ -1,5 +1,10 @@
 # enFiler
 
+> [!IMPORTANT]
+> **このリポジトリはアーカイブされました。**
+> enFiler の事業サイトは [`osmdik/osmdik-web`](https://github.com/osmdik/osmdik-web) にモノレポとして統合されました。
+> 開発は [`apps/enfiler/`](https://github.com/osmdik/osmdik-web/tree/main/apps/enfiler) で継続しています。以降の変更はそちらで行ってください。
+
 島根県出雲市を拠点にホームページ制作を行う Web クリエイター **大嶋大輝（屋号: enFiler）** の事業サイトです。
 
 コンセプト紹介・サービス案内・お知らせ（ブログ）・お問い合わせフォームを備えた、事業サイトとして運用しています。
