@@ -1,11 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  mode: "jit",
-  purge: [
+  content: [
+    "./src/app/**/*.{js,ts,jsx,tsx}",
     "./src/pages/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
-  content: [],
   theme: {
     container: {
       center: true,
@@ -16,7 +15,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        zenkaku: ["Zen Kaku Gothic New"],
+        zenkaku: ["var(--font-zen-kaku)", "sans-serif"],
       },
       colors: {
         basec: "#eceff4",
