@@ -10,6 +10,22 @@
 
 ---
 
+## ✅ 確定した意思決定（2026-07-14 ユーザー確定）
+
+第1弾（Next 16 / React 19 / headlessui v2 / framer-motion v12 / **next-seo 6.8** / TS 5.9）は **PR #13 でマージ済み**。これを出発点とする。
+
+| 論点 | 決定 | 備考 |
+| --- | --- | --- |
+| A 遷移アニメ | **A-1 入場フェードのみ** | exit は妥協。template 再マウントの入場フェードのみ |
+| B 配信 | **B-1 純 SSG** | `dynamic = 'force-static'`。更新時デプロイ継続 |
+| C 進め方 | **C-1 一括移行（1 PR）** | ※推奨の C-3 から変更。app 全ルート作成 + pages 削除を1 PR で。ただしコミットはフェーズ1→2 の順で積み bisect 可能にし、`/about` 疎通を内部チェックポイントとして維持 |
+| D フォント | **next/font へ移行** | `Zen_Kaku_Gothic_New` weight 300/400。問題時 `<link>` へフォールバック |
+| E GTM | **@next/third-parties へ移行** | `GoogleTagManager` コンポーネント |
+
+> 注: 出発点の next-seo は **v6.8**（第1弾で v7 は見送り）。移行では next-seo を捨てて Metadata API 化し、最終的に依存削除する（本計画 §T2-5 のとおり）。
+
+---
+
 ## 0. 意思決定が必要な論点
 
 ### 論点 A: ページ遷移の exit アニメーション実現方式（最大の難所）
@@ -79,8 +95,9 @@
   - [ ] グローバル CSS/scss import（`tailwindcss/tailwind.css` + `src/styles/style.scss`）を layout へ
   - [ ] `metadata`（title.template / default / description / openGraph / twitter / metadataBase / icons）を `_app.tsx` の `DefaultSeo` から移植。OGP 画像の `./` 相対を `metadataBase` 前提の絶対に是正
   - [ ] `viewport` export（現状 `_app` の viewport meta）
-- [ ] **T1-2 next/font 導入**（論点 D、採用時）
+- [ ] **T1-2 next/font 導入**（論点 D、採用済み）
   - [ ] `Zen_Kaku_Gothic_New`（weight 300/400, display swap, CSS 変数）
+  - [ ] **日本語フォントは preload 可能な subset が無いため `preload: false` を指定**（指定しないと警告/エラー。レビュー指摘 #5）
   - [ ] `tailwind.config.js` の `fontFamily.zenkaku` を `var(--font-...)` 連携に変更、`<html>` に className/variable 付与
 - [ ] **T1-3 GTM 導入**（論点 E、採用時）
   - [ ] `@next/third-parties` 追加、`<GoogleTagManager gtmId={...} />` を layout に配置
@@ -88,12 +105,13 @@
 - [ ] **T1-4 Client Providers**（`src/app/providers.tsx`, `"use client"`）
   - [ ] `react-hot-toast` の `<Toaster />` をここに
 - [ ] **T1-5 template（遷移アニメ）**（`src/app/template.tsx`, `"use client"`）
-  - [ ] 案 A-1: `motion.div` の `initial={{opacity:0}}`/`animate={{opacity:1}}`。`onExitComplete` の `window.scrollTo` は入場時のスクロールリセットに読み替え（`useEffect` で `scrollTo(0,0)`）
-  - [ ] （案 A-2 採用時のみ）FrozenRouter ラッパーを別途 PoC
+  - [ ] 案 A-1（確定）: `motion.div` の `initial={{opacity:0}}`/`animate={{opacity:1}}`
+  - [ ] **スクロールリセットは手動実装しない**: 全 Link から `scroll={false}` を外し、App Router デフォルトの「遷移時に先頭へスクロール」に任せる（現状の `scroll={false}` + exit 後 `scrollTo` のセットは exit 前提の構成。レビュー指摘 #6）
 - [ ] **T1-6 共通レイアウト（Header/Footer）**
   - [ ] `src/components/layout/template.tsx`（Header+children+Footer）を app 用に配置。App の `template.tsx` と名前衝突するので **`SiteChrome` 等へリネーム**し layout から使用
   - [ ] `header.tsx` に `"use client"` 付与（headlessui v2）。`footer.tsx` は Server のまま
-- [ ] **T1-7 疎通確認用に `/about` を先行移行**（`src/app/about/page.tsx` + `metadata`）、`src/pages/about.tsx` は一旦残す（共存でビルド衝突しないことを確認したら削除）
+- [ ] **T1-7 疎通確認用に `/about` を先行移行**（`src/app/about/page.tsx` + `metadata`）
+  - [ ] **同一コミットで `src/pages/about.tsx` を削除する**（同一ルートが pages/ と app/ に共存すると "Conflicting app and page file" で必ずビルドエラーになるため「残して確認」は不可能。レビュー指摘 #2）
 
 ### フェーズ 2: 残りページ移行
 - [ ] **T2-1 静的ページ**: `service` / `contact` を `app/*/page.tsx` 化（`metadata` export）。`contact` は `ContactForm`（`"use client"` 付与）を配置
@@ -104,8 +122,13 @@
   - [ ] page 本体で `const { id } = await params` → `client.get({endpoint:"news",contentId:id})`
   - [ ] `generateMetadata` で記事タイトル → `metadata.title`（旧 `NextSeo title={news.title}`）
   - [ ] 本文の `dangerouslySetInnerHTML` はそのまま
-- [ ] **T2-5 旧 pages 削除**: `src/pages/` 一式（`_app`/`_document`/各ページ）を削除。`next-seo` を依存から削除。旧 `gtm.tsx` の残骸整理
-- [ ] **T2-6 設定の追随**: `next-sitemap.config.js` はそのまま（app ルートを走査）。`tsconfig` の paths（`src/*`）確認
+- [ ] **T2-4b `not-found.tsx` 作成**: pages/ 削除で pages デフォルトの `/404` が消えるため、サイトのトーンに合わせた `src/app/not-found.tsx` を追加（レビュー指摘 #4）
+- [ ] **T2-5 旧 pages 削除**: `src/pages/` の残り一式（`_app`/`_document`/各ページ ※ルート単位移行時に随時削除済みのもの以外）を削除。`next-seo` を依存から削除。旧 `gtm.tsx` の残骸整理
+  - 注: 各ページは app 版作成と**同一コミットで pages 版を削除**する方式（レビュー指摘 #2）のため、T2-5 は `_app`/`_document` 等の全体基盤の削除が中心になる
+- [ ] **T2-6 設定の追随**
+  - [ ] **【必須】`tailwind.config.js` の content/purge に `./src/app/**/*.{js,ts,jsx,tsx}` を追加**（現状 purge は pages/components のみで、app 配下のクラスが全パージされスタイルが消える。レビュー指摘 #1）
+  - [ ] **next-sitemap を v3 → v4 へ更新**（v3 は App Router のルート列挙に非対応の可能性が高い。postbuild 出力で sitemap に全ルートが載ることを必ず確認。レビュー指摘 #3）
+  - [ ] `tsconfig` の paths（`src/*`）確認
 
 ### フェーズ 3: 検証・リリース
 - [ ] 下記「3. 検証方法」全項目
@@ -162,9 +185,9 @@
 | R4 | microCMS SDK fetch が SSG にならず動的化 | 中 | 中 | 各ルートに `dynamic='force-static'` 明示。ビルドログで Static 確認 |
 | R5 | next/font 日本語自己ホストでビルド肥大・表示崩れ | 中 | 中 | 論点 D。問題時は `<link>` 方式へフォールバック |
 | R6 | OGP 画像の相対パス崩れ（現状 `./ogp-image.jpg`） | 中（SNS 表示） | 中 | `metadataBase` 設定＋絶対解決。検証3で確認 |
-| R7 | pages↔app 同一ルート二重定義でビルド衝突 | 高（ビルド不能） | 中 | T2-5 を全移行後に。共存中はルート重複させない |
+| R7 | pages↔app 同一ルート二重定義でビルド衝突 | 高（ビルド不能） | **確実**（同一ルート共存は必ずエラー） | 各ルートの app 版作成と pages 版削除を同一コミットで行う（レビュー指摘 #2） |
 | R8 | 共存中のグローバル遷移アニメ二重管理・不連続 | 低 | 中 | C-3 で共存期間を最小化 |
-| R9 | next-sitemap が app ルートを列挙しない | 低 | 低 | postbuild 出力を検証1で確認 |
+| R9 | next-sitemap が app ルートを列挙しない | 中（SEO） | **高**（v3 は App Router 非対応の可能性大） | T2-6 で v4 へ更新し、postbuild 出力を検証1で必ず確認（レビュー指摘 #3） |
 | R10 | headlessui v2 の Menu 挙動差（第1弾で移行済み想定） | 低 | 低 | 第1弾で対応済み前提。念のため目視 |
 | R11 | 第1弾の確定バージョンが想定とズレる | 中 | 中 | フェーズ0 で実際の package.json を再確認し数値調整 |
 
@@ -177,20 +200,20 @@
 
 ## 6. コミット分割方針（CLAUDE.md 準拠）
 
-フェーズ1 PR:
+**単一 PR（論点 C-1 確定）**。ただし以下の順でコミットを積み bisect 可能にする。各ページ移行コミットは **app 版作成 + pages 版削除を同一コミット**で行う（R7 対策）。
+
 1. `feat: App Router 基盤（root layout / metadata / viewport）を追加`
-2. `feat: next/font で Zen Kaku Gothic New を導入し Tailwind と連携`（font 単独）
+2. `feat: next/font で Zen Kaku Gothic New を導入し Tailwind と連携`（font 単独。preload:false・tailwind content への `src/app/**` 追加を含む）
 3. `feat: GTM を @next/third-parties に移行`（GTM 単独）
 4. `feat: Client Providers（Toaster）と遷移アニメ template を追加`
 5. `refactor: 共通レイアウトを SiteChrome にリネームし header を client 化`（リネームと内容変更は分離: リネームのみのコミット→client化コミット）
-6. `feat: /about を App Router へ移行（疎通確認）`
-
-フェーズ2 PR:
-7. `feat: service/contact を App Router へ移行`
-8. `feat: トップ・news 一覧を Server Component 化（SSG 維持）`
-9. `feat: news 詳細を generateStaticParams / generateMetadata へ移行`
+6. `feat: /about を App Router へ移行`（pages/about.tsx 削除込み。**ここが疎通確認ゲート**：build/検証を通してから 7 以降へ）
+7. `feat: service/contact を App Router へ移行`（各 pages 版削除込み）
+8. `feat: トップ・news 一覧を Server Component 化（SSG 維持）`（各 pages 版削除込み）
+9. `feat: news 詳細を generateStaticParams / generateMetadata へ移行`（pages 版削除込み）
 10. `refactor: NewsType を types へ移設`（型移設は利用コードと分けるか、小さければ 8/9 に含める）
-11. `chore: 旧 pages（_app/_document/各ページ）と next-seo を削除`（削除は独立コミット）
+11. `feat: not-found.tsx を追加`（旧 pages デフォルト 404 の代替）
+12. `chore: 旧 pages 基盤（_app/_document）と next-seo を削除、next-sitemap v4 へ更新`（削除は独立コミット。sitemap 出力の検証込み）
 
 レビュー修正は原則「1指摘1コミット」。
 
