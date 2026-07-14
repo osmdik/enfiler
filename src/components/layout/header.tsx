@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
@@ -15,7 +17,7 @@ const Header = () => {
   return (
     <header className="sticky top-0 font-zenkaku font-light z-10">
       <div className="container mx-auto max-w-screen-xl flex justify-between backdrop-blur-sm bg-white/50">
-        <Link href="/" className="logo w-40 flex items-center" scroll={false}>
+        <Link href="/" className="logo w-40 flex items-center">
           <Image
             src="/logo.png"
             alt="enFiler"
@@ -49,7 +51,6 @@ const Header = () => {
                 <MenuItem>
                   <Link
                     href={item.href}
-                    scroll={false}
                     className="inline-block w-full py-4 hover:opacity-40 hover:tracking-[.25em] transition-all ease-easeInOutBack duration-300"
                   >
                     {item.name}
